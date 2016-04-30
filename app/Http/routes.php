@@ -14,3 +14,26 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::controllers([
+'users' => 'UsersController',
+
+]);
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
+
+
+/*Route::get('example',function(){
+
+
+    $user = 'jose';
+    return view('examples.template', compact('user'));
+}
+    */
+Route::group(['prefix' => 'admin' , 'namespace' => 'Admin'], function (){
+    Route::resource('users','UsersController');
+
+
+});
+

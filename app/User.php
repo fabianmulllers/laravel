@@ -1,8 +1,9 @@
 <?php
 
-namespace App;
+namespace course;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -12,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name','last_name', 'email', 'password','type'
     ];
 
     /**
@@ -23,4 +24,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+
+    public function profile(){
+
+       return $this->hasOne('course\UserProfile');
+    }
+
+    public function getFullNameAttribute(){
+        //dd('full name');
+
+        return $this->first_name.' '. $this->last_name;
+    }
+
+    public function setPasswordAttribute( $value)
+    {
+        if(!empty($value)) {
+            $this->attributes['password'] = bcrypt($value);
+        }
+    }
 }
