@@ -76,7 +76,7 @@ public function findUser(){}
                 ->withInput(Request::except('password'));
 
         }*/
-        $user= User::create($request->all() );
+        $user= User::create($request->all());
         return Redirect::route('admin.users.index');
 
     }
@@ -107,6 +107,7 @@ public function findUser(){}
         //User::destroy($id);
         $user->delete();
 
+        
    $message=$user->fullname.' fue eliminado';
         if(request::ajax()){
            // return $message;

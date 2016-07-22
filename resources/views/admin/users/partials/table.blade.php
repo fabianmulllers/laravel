@@ -6,7 +6,7 @@
         <th>acciones</th>
     </tr>
     @foreach($users as $user)
-        <tr data-id="{{ $user->id }}"">
+        <tr data-id="{{ $user->id }}">
             <td>{{ $user->id }}</td>
             <td> {{ $user->fullname }}</td>
             <td>{{$user->email}}</td>
